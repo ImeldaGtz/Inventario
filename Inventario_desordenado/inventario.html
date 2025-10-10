@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventario</title>
+</head>
+<body>
+    <div id="app">
+        <form>
+            <label for="txtCode">
+                Código: <input type="text" id="txtCode">
+            </label>
+            
+            <button type="button" id="btnSearch">Buscar</button>
+            <button type="button" id="btnDelete">Eliminar</button>
+            <br>
+            <label for="txtName">
+                Nombre: <input type="text" id="txtName">
+            </label>
+            <label for="txtQuan">
+                Cantidad: <input type="number" id="txtQuan">
+            </label>
+            <label for="txtPrice">
+                Precio: <input type="number" id="txtPrice">
+            </label>
+
+            <button type="button" id="btnAdd">Agregar</button>
+            <button type="button" id="btnAddFirst">Agregar al Inicio</button>
+            <button type="button" id="btnInsert">Insertar</button>
+            <button type="button" id="btnList">Listar</button>
+            <button type="button" id="btnExtractFirst">Extraer Primero</button>
+            <button type="reset" id="btnCancel">Cancelar</button>
+        </form>
+    </div>
+
+    <div id="detalles"></div>
+
+    <script type="module" src="./app.js"></script>
+</body>
+</html>
