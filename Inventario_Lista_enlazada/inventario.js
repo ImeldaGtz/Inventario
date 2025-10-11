@@ -3,6 +3,7 @@ export class Inventario{
         this.primerProducto = null;
         this.ultimoProducto = null;
     }
+    // Por revisar
     agregar(producto){
         if (this._codigoEnExistencia(producto.codigo)) {
             return false; // 'Codigo ya existente'; // No se pudo
@@ -16,6 +17,7 @@ export class Inventario{
             return true; // 'Producto agregado'; // Se pudo
         }
     }
+    // Por revisar
     agregarInicio(producto){
         if (!this._codigoEnExistencia(producto.codigo)) {
            producto.sig = this.primerProducto;
@@ -25,19 +27,28 @@ export class Inventario{
             return false; //'Codigo ya existente'; // No se pudo
         }
     }
+    // Por revisar
     insertar(producto, lugar) {
         if (!this._codigoEnExistencia(producto.codigo)) {
-            if (lugar - 1 > this.productos.length) {
-                return `Posición no válida, se colocó al final.`;
-            } else{
-                return true; //'Producto insertado'; // Se pudo
+            if (this.primero == null) {
+                this.primero = Alumno;
             }
+            else {
+                this._agregate(producto, this.primerProducto, lugar);
+            }
+            return true; //'Producto insertado'; // Se pudo
         } else {
             return false; //'Codigo ya existente'; // No se pudo
         }
     }
+    // Por revisar
     listar(){
         let info = ``;
+        let actual = this.primerProducto;
+        while(actual != null){
+            info += actual.info() + "\n";
+            actual = actual.sig;
+        }
         return info;
     }
     buscar(codigo){
@@ -59,12 +70,25 @@ export class Inventario{
         let resultado;
         return resultado;
     }
-
-    _agregate(nuevo, productoX) {
-        if (productoX.sig == null) {
-            productoX.sig = nuevo;
+    // Modificado, por revisar
+    _agregate(nuevo, productoX, lugar) {
+        if(lugar == undefined){
+            if (productoX.sig == null) {
+                productoX.sig = nuevo;
+            } else {
+                this._agregate(nuevo, productoX.sig);
+            }
         } else {
-            this._agregate(nuevo, productoX.sig);
+            if(productoX.sig == null){
+                productoX.sig = nuevo;
+            }
+            else if (lugar == 0) {
+                nuevo.sig = productoX.sig;
+                productoX.sig = nuevo;
+            } else {
+                lugar--;
+                this._agregate(nuevo, productoX.sig, lugar);
+            }            
         }
     }
     _buscarIndice(codigo) {
