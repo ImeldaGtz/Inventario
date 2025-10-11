@@ -1,7 +1,6 @@
 export class Inventario{
     constructor(){
         this.primerProducto = null;
-        this.ultimoProducto = null;
     }
     // Revisado
     agregar(producto){
@@ -105,7 +104,7 @@ export class Inventario{
         this.primerProducto = resultado.sig;
         return resultado;
     }
-    // Modificado, por revisar
+    // Revisado
     _agregate(nuevo, productoX, lugar) {
         if(lugar == undefined){
             if (productoX.sig == null) {
