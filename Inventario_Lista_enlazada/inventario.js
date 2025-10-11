@@ -88,11 +88,14 @@ export class Inventario{
             return false; //'Codigo inexistente'; // No se pudo
         }
     }
+    // Por revisar
     extraerPrimero(){
         if(this.primerProducto == null) {
             return false;
         }
         let resultado;
+        resultado = this.primerProducto;
+        this.primerProducto = resultado.sig;
         return resultado;
     }
     // Modificado, por revisar
