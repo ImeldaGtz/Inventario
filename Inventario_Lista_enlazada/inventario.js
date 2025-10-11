@@ -70,7 +70,7 @@ export class Inventario{
         }
         return resultado == undefined ? null : resultado;
     }
-    // Revisado
+    // Arreglado y revisado
     eliminar(codigo) {
         if (this._codigoEnExistencia(codigo)){
             let actual = this.primerProducto;
@@ -95,7 +95,7 @@ export class Inventario{
             return false; //'Codigo inexistente'; // No se pudo
         }
     }
-    // Por revisar
+    // Revisado
     extraerPrimero(){
         if(this.primerProducto == null) {
             return false;
