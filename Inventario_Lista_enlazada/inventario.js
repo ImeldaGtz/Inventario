@@ -27,14 +27,18 @@ export class Inventario{
             return false; //'Codigo ya existente'; // No se pudo
         }
     }
-    // Por revisar
+    // Arreglado y revisado
     insertar(producto, lugar) {
         if (!this._codigoEnExistencia(producto.codigo)) {
             if (this.primerProducto == null) {
                 this.primerProducto = producto;
             }
             else {
-                this._agregate(producto, this.primerProducto, lugar);
+                if (lugar == 1) {
+                    this.agregarInicio(producto);
+                } else{
+                    this._agregate(producto, this.primerProducto, lugar-2);
+                }
             }
             return true; //'Producto insertado'; // Se pudo
         } else {
@@ -112,8 +116,7 @@ export class Inventario{
                 nuevo.sig = productoX.sig;
                 productoX.sig = nuevo;
             } else {
-                lugar--;
-                this._agregate(nuevo, productoX.sig, lugar);
+                this._agregate(nuevo, productoX.sig, --lugar);
             }            
         }
     }
