@@ -82,7 +82,7 @@ function _listarHTML() {
         let info = ``;
         let actual = miInventario.primerProducto;
         while(actual != null){
-            info += `<li>${actual.info()}</li>`;
+            info += `<li>${actual.infoHTML()}</li>`;
             actual = actual.sig;
         }
         return info;
