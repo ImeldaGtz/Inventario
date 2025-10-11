@@ -1,3 +1,5 @@
+import { act } from "react";
+
 export class Inventario{
     constructor(){
         this.primerProducto = null;
@@ -51,8 +53,19 @@ export class Inventario{
         }
         return info;
     }
+    // Por revisar
     buscar(codigo){
         let resultado;
+        let actual = this.primerProducto;
+        let seEncontro = false;
+        while(actual != null || seEncontro == false) {
+            if(actual.codigo == codigo) {
+                resultado = actual;
+                seEncontro = true;
+            } else {
+                actual = actual.sig;
+            }
+        }
         return resultado == undefined ? null : resultado;
     }
     eliminar(codigo) {
