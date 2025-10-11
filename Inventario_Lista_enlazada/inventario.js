@@ -3,7 +3,7 @@ export class Inventario{
         this.primerProducto = null;
         this.ultimoProducto = null;
     }
-    // Por revisar
+    // Revisado
     agregar(producto){
         if (this._codigoEnExistencia(producto.codigo)) {
             return false; // 'Codigo ya existente'; // No se pudo
@@ -17,7 +17,7 @@ export class Inventario{
             return true; // 'Producto agregado'; // Se pudo
         }
     }
-    // Por revisar
+    // Revisado
     agregarInicio(producto){
         if (!this._codigoEnExistencia(producto.codigo)) {
            producto.sig = this.primerProducto;
@@ -31,7 +31,7 @@ export class Inventario{
     insertar(producto, lugar) {
         if (!this._codigoEnExistencia(producto.codigo)) {
             if (this.primero == null) {
-                this.primero = Alumno;
+                this.primero = producto;
             }
             else {
                 this._agregate(producto, this.primerProducto, lugar);
@@ -41,7 +41,7 @@ export class Inventario{
             return false; //'Codigo ya existente'; // No se pudo
         }
     }
-    // Por revisar
+    // Revisado
     listar(){
         let info = ``;
         let actual = this.primerProducto;

@@ -59,6 +59,7 @@ btnAddFirst.addEventListener("click", () =>{
 
 const btnInsert = document.getElementById("btnInsert");
 btnInsert.addEventListener("click", () =>{
+    let producto = _newProduct();
     if (!producto) {
         msg.innerHTML = '';
         msg.innerHTML += "<p>Campos incompletos</p>";
