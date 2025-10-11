@@ -70,21 +70,26 @@ export class Inventario{
         }
         return resultado == undefined ? null : resultado;
     }
-    // Por revisar
+    // Revisado
     eliminar(codigo) {
         if (this._codigoEnExistencia(codigo)){
             let actual = this.primerProducto;
-            let seEncontro = false;
 
-            while(seEncontro == false) {
-                if(actual.sig.codigo == codigo) {
-                    actual.sig == actual.sig.sig;
-                    seEncontro = true;
-                } else {
-                    actual = actual.sig;
+            if (actual.codigo == codigo) {
+                this.primerProducto = actual.sig;
+            }
+            else{
+                let seEncontro = false;
+
+                while(seEncontro == false) {
+                    if(actual.sig.codigo == codigo) {
+                        actual.sig = actual.sig.sig;
+                        seEncontro = true;
+                    } else {
+                        actual = actual.sig;
+                    }
                 }
             }
-
             return true; //'Producto eliminado'; // Se pudo
         } else {
             return false; //'Codigo inexistente'; // No se pudo
