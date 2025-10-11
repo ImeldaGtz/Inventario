@@ -55,7 +55,7 @@ export class Inventario{
         }
         return info;
     }
-    // Por revisar
+    // Revisado
     buscar(codigo){
         let resultado;
         let actual = this.primerProducto;
