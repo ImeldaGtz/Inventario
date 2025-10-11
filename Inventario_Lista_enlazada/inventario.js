@@ -30,8 +30,8 @@ export class Inventario{
     // Por revisar
     insertar(producto, lugar) {
         if (!this._codigoEnExistencia(producto.codigo)) {
-            if (this.primero == null) {
-                this.primero = producto;
+            if (this.primerProducto == null) {
+                this.primerProducto = producto;
             }
             else {
                 this._agregate(producto, this.primerProducto, lugar);
