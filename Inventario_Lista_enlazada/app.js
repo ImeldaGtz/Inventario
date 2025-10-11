@@ -7,14 +7,6 @@ let msg = document.getElementById("detalles");
 const btnAdd = document.getElementById("btnAdd");
 btnAdd.addEventListener("click", () => {
     let producto = _newProduct();
-    if (!producto) {
-        msg.innerHTML = '';
-        msg.innerHTML += "<p>Campos incompletos</p>";
-    } else {
-        msg.innerHTML = '';
-        msg.innerHTML += (miInventario.agregar(producto)) ? "<h5>Se agregó</h5> <p>" + producto.info() + "</p>" : '<p>Código ya existente</p>';
-    }
-
     
 });
 
