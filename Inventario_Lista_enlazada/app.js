@@ -79,11 +79,13 @@ btnExtractFirst.addEventListener("click", () =>{
 });
 
 function _listarHTML() {
-    let info = ``;
-    for(let i = 0; i < miInventario.productos.length; i++) {
-        info+= `<li>${miInventario.productos[i].info()}</li>`;  
-    }
-    return info;
+        let info = ``;
+        let actual = miInventario.primerProducto;
+        while(actual != null){
+            info += `<li>${actual.info()}</li>`;
+            actual = actual.sig;
+        }
+        return info;
 }
 
 function _newProduct(){
