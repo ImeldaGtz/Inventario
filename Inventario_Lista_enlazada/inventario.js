@@ -68,9 +68,21 @@ export class Inventario{
         }
         return resultado == undefined ? null : resultado;
     }
+    // Por revisar
     eliminar(codigo) {
         if (this._codigoEnExistencia(codigo)){
-            
+            let actual = this.primerProducto;
+            let seEncontro = false;
+
+            while(seEncontro == false) {
+                if(actual.sig.codigo == codigo) {
+                    actual.sig == actual.sig.sig;
+                    seEncontro = true;
+                } else {
+                    actual = actual.sig;
+                }
+            }
+
             return true; //'Producto eliminado'; // Se pudo
         } else {
             return false; //'Codigo inexistente'; // No se pudo
@@ -103,10 +115,6 @@ export class Inventario{
                 this._agregate(nuevo, productoX.sig, lugar);
             }            
         }
-    }
-    _buscarIndice(codigo) {
-        let resultado;
-        return resultado != undefined ? resultado : null;
     }
     _codigoEnExistencia(codigo){
         return this.buscar(codigo) == null ? false : true;
