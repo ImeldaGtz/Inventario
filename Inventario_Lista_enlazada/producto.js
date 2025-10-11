@@ -10,4 +10,8 @@ export class Producto{
     info(){
         return `Código: ${this.codigo} Nombre: ${this.nombre} Cantidad: ${this.cantidad} Precio: ${this.precio}`;
     }
+    
+    infoHTML(){
+        return `<p>Código: ${this.codigo} Nombre: ${this.nombre} Cantidad: ${this.cantidad} Precio: ${this.precio}</p>`;
+    }
 }
