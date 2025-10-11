@@ -7,7 +7,6 @@ let msg = document.getElementById("detalles");
 const btnAdd = document.getElementById("btnAdd");
     btnAdd.addEventListener("click", () => {
     let producto = _newProduct();
-    console.log(producto);
     if (!producto) {
         msg.innerHTML = '';
         msg.innerHTML += "<p>Campos incompletos</p>";
