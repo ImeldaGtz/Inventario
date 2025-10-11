@@ -1,12 +1,22 @@
 import { Inventario } from "./inventario.js";
 import { Producto } from "./producto.js";
 
+console.log('Carga app.js');
 const miInventario = new Inventario();
 let msg = document.getElementById("detalles");
 
 const btnAdd = document.getElementById("btnAdd");
-btnAdd.addEventListener("click", () => {
+    btnAdd.addEventListener("click", () => {
+        console.log('agregar funciona');
     let producto = _newProduct();
+    if (!producto) {
+        msg.innerHTML = '';
+        msg.innerHTML += "<p>Campos incompletos</p>";
+    } else {
+        msg.innerHTML = '';
+        msg.innerHTML += (miInventario.agregar(producto)) ? "<h5>Se agregó</h5> <p>" + producto.info() + "</p>" : '<p>Código ya existente</p>';
+    }
+
     
 });
 

@@ -1,5 +1,3 @@
-import { act } from "react";
-
 export class Inventario{
     constructor(){
         this.primerProducto = null;
