@@ -56,7 +56,7 @@ export class Inventario{
         let resultado;
         let actual = this.primerProducto;
         let seEncontro = false;
-        while(actual != null || seEncontro == false) {
+        while(actual != null && seEncontro == false) {
             if(actual.codigo == codigo) {
                 resultado = actual;
                 seEncontro = true;

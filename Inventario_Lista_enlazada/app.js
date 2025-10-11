@@ -1,14 +1,13 @@
 import { Inventario } from "./inventario.js";
 import { Producto } from "./producto.js";
 
-console.log('Carga app.js');
 const miInventario = new Inventario();
 let msg = document.getElementById("detalles");
 
 const btnAdd = document.getElementById("btnAdd");
     btnAdd.addEventListener("click", () => {
-        console.log('agregar funciona');
     let producto = _newProduct();
+    console.log(producto);
     if (!producto) {
         msg.innerHTML = '';
         msg.innerHTML += "<p>Campos incompletos</p>";
@@ -22,7 +21,7 @@ const btnAdd = document.getElementById("btnAdd");
 
 const btnList = document.getElementById("btnList");
 btnList.addEventListener("click", () => {
-    if (miInventario.productos.length == 0) {
+    if (miInventario.primerProducto == null) {
         msg.innerHTML = '';
         msg.innerHTML += "<p>Nada que listar</p>";
     } else{
