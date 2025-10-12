@@ -80,6 +80,7 @@ export class Inventario{
     }
     
     _encontrarParaAgregar(codigo) {
+        let resultado;
         if (this.productos[0].codigo < codigo) {
             resultado = 0;
         } else if(this.productos[this.productos.length-1].codigo < codigo) {
@@ -91,7 +92,7 @@ export class Inventario{
             while(i != m) {
                 m = Math.floor((i + f) / 2);
                 if(this.productos[m].codigo == codigo){
-                    resultado = m;
+                    resultado = m+1; //?
                 }
                 else if(this.productos[m].codigo > codigo) {
                     f = m;
@@ -99,8 +100,9 @@ export class Inventario{
                     i = m;
                 }
             }
+            resultado = m+1;
         }
-       return half+1;
+       return resultado;
 
     }
 }
