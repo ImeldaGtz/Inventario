@@ -6,7 +6,7 @@ export class Inventario{
         if (this._codigoEnExistencia(producto.codigo)) {
             return false; // 'Codigo ya existente'; // No se pudo
         } else {
-            this.productos.push(producto);
+            let posición = this._encontrarParaAgregar(producto.codigo);
             return true; // 'Producto agregado'; // Se pudo
         }
     }
@@ -57,35 +57,22 @@ export class Inventario{
         let resultado;
         if(this.productos.length == 1) {
             return this.productos[0].codigo == codigo ? 0 : null;
+        } else {
+            let i = 0;
+            let f = this.productos.length-1;
+            let m;
+            while(i != m) {
+                m = Math.floor((i + f) / 2);
+                if(this.productos[m].codigo == codigo){
+                    resultado = m;
+                }
+                else if(this.productos[m].codigo > codigo) {
+                    f = m;
+                } else {
+                    i = m;
+                }
+            }
         }
-       let limIni = 0;
-       let limFin = this.productos.length-1;
-       let half = 0;
-       let seEncontro = false;
-
-       while(seEncontro == false) {
-            half = Math.floor((limIni + limFin) / 2);
-
-            if(this.productos[half].codigo == codigo) {
-                resultado = half;
-                seEncontro = true;
-            }
-
-            else if (this.productos[half].codigo > codigo || this.productos[half+1].codigo == codigo){
-                if(this.productos[half + 1].codigo == codigo){
-                    resultado = half + 1;
-                    seEncontro = true;
-                }
-                limFin = half;
-            } 
-            else {
-                if(this.productos[limIni].codigo == codigo){
-                    resultado = limIni;
-                    seEncontro = true;
-                }
-                limIni = half;
-            }
-       }
         return resultado != undefined ? resultado : null;
     }
     _codigoEnExistencia(codigo){
@@ -93,32 +80,26 @@ export class Inventario{
     }
     
     _encontrarParaAgregar(codigo) {
-        /*
-            Para una búsqueda binaria se busca la mitad de la suma de la cantidad de los elementos redondeado en caso de ser necesario
-            Entonces, se va preguntando, el valor por el que voy a preguntar es mayor o menor?
-            Si es mayor, entonces el valor pequeño será recorrido hacia la mitad encontrada.
-            Si es menor, entonces el valor grande será recorrido hacia la mitd encontrada.
-
-            Si se encuentra, existe.
-            Sino, no existe, y se podría insertar
-        */
-       let limIni = 0;
-       let limFin = this.productos.length-1;
-       let half = 0;
-
-       while(limIni <= limFin) {
-            half = Math.floor((limIni + limFin) / 2);
-
-            if(half == limIni) {
-                seEncontro = true;
+        if (this.productos[0].codigo < codigo) {
+            resultado = 0;
+        } else if(this.productos[this.productos.length-1].codigo < codigo) {
+            resultado = this.productos.length;
+        } else {
+            let i = 0;
+            let f = this.productos.length-1;
+            let m;
+            while(i != m) {
+                m = Math.floor((i + f) / 2);
+                if(this.productos[m].codigo == codigo){
+                    resultado = m;
+                }
+                else if(this.productos[m].codigo > codigo) {
+                    f = m;
+                } else {
+                    i = m;
+                }
             }
-            else if (this.productos[half].codigo > codigo){
-                limIni = half;
-            } 
-            else {
-                limFin = half;
-            }
-       }
+        }
        return half+1;
 
     }
