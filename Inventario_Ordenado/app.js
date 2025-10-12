@@ -20,6 +20,7 @@ btnAdd.addEventListener("click", () => {
 
 const btnList = document.getElementById("btnList");
 btnList.addEventListener("click", () => {
+    miInventario.listar();
     if (miInventario.productos.length == 0) {
         msg.innerHTML = '';
         msg.innerHTML += "<p>Nada que listar</p>";
