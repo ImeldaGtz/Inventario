@@ -4,6 +4,8 @@ export class Producto{
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.precio = precio;
+        this.next = null;
+        this.previus = null;
     }
 
     info(){
