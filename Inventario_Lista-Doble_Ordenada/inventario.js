@@ -4,6 +4,7 @@ export class Inventario{
     constructor(){
         this.primero = null;
     }
+// Por revisar
     agregar(producto){
         if (this._codigoEnExistencia(producto.codigo)) {
             return false; // 'Codigo ya existente'; // No se pudo
@@ -11,6 +12,7 @@ export class Inventario{
             if(this.primero == null) {
                 this.primero = producto;
             } else {
+
                 if(producto.codigo < this.primero.codigo) {
                     this.primero.previus = producto;
                     producto.next = this.primero;
