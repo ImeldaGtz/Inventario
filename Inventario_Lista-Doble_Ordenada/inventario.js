@@ -14,7 +14,7 @@ export class Inventario{
             } else {
 
                 if(producto.codigo < this.primero.codigo) {
-                    this.primero.previus = producto;
+                    this.primero.previous = producto;
                     producto.next = this.primero;
                     this.primero = producto;
                 } else {
@@ -46,13 +46,13 @@ export class Inventario{
 // Por revisar
     eliminar(codigo, actual) {
         if (this.primero.codigo == codigo) {
-            this.primero.next.previus = null;
+            this.primero.next.previous = null;
             this.primero = this.primero.next;
             return true; //'Producto eliminado'; // Se elimino el primero
         }
         else if (actual.codigo == codigo){
-            actual.previus.next = actual.next;
-            actual.next.previus = actual.previus;
+            actual.previous.next = actual.next;
+            actual.next.previous = actual.previous;
             return true; //'Producto eliminado'; // Se pudo
         } 
         else if (actual.next == null){
@@ -76,12 +76,12 @@ export class Inventario{
     _agregate(producto, actual) {
         if(actual.next == null) {
             actual.next = producto;
-            producto.previus = actual;
+            producto.previous = actual;
         } else if(actual.codigo <= producto.codigo && actual.next.codigo > producto.codigo) {
-            producto.previus = actual;
+            producto.previous = actual;
             producto.next = actual.next;
             actual.next = producto;
-            producto.next.previus = producto;
+            producto.next.previous = producto;
         }
         else {
             this._agregate(producto, actual.next);

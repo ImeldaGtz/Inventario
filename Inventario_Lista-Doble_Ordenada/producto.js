@@ -5,7 +5,7 @@ export class Producto{
         this.cantidad = cantidad;
         this.precio = precio;
         this.next = null;
-        this.previus = null;
+        this.previous = null;
     }
 
     info(){
