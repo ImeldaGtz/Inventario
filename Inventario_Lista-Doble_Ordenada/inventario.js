@@ -1,42 +1,25 @@
+import { act } from "react";
+
 export class Inventario{
     constructor(){
-        this.productos = [];
+        this.primero = null;
     }
     agregar(producto){
         if (this._codigoEnExistencia(producto.codigo)) {
             return false; // 'Codigo ya existente'; // No se pudo
         } else {
-            this.productos.push(producto);
-            return true; // 'Producto agregado'; // Se pudo
-        }
-    }
-    agregarInicio(producto){
-        if (!this._codigoEnExistencia(producto.codigo)) {
-            this.productos.push(this.productos[this.productos.length-1]);
-            for(let i = this.productos.length-2; i>0; i--) {
-                this.productos[i] = this.productos[i-1];
-            }
-            this.productos[0] = producto;
-            return true; //'Producto agregado'; // Se pudo
-        } else {
-            return false; //'Codigo ya existente'; // No se pudo
-        }
-    }
-    insertar(producto, lugar) {
-        if (!this._codigoEnExistencia(producto.codigo)) {
-            if (lugar - 1 > this.productos.length) {
-                this.productos.push(producto);
-                return `Posición no válida, se colocó al final.`;
-            } else{
-                this.productos.push(this.productos[this.productos.length-1]);
-                for (let i = lugar-1; i<this.productos.length-2; i++){
-                    this.productos[i+1] = this.productos[i];
+            if(this.primero == null) {
+                this.primero = producto;
+            } else {
+                if(producto.codigo < this.primero.codigo) {
+                    this.primero.previus = producto;
+                    producto.next = this.primero;
+                    this.primero = producto;
+                } else {
+                    _agregate(producto, this.primero);
                 }
-                this.productos[lugar-1] = producto;
-                return true; //'Producto insertado'; // Se pudo
             }
-        } else {
-            return false; //'Codigo ya existente'; // No se pudo
+            return true; // 'Producto agregado'; // Se pudo
         }
     }
     listar(){
@@ -90,5 +73,21 @@ export class Inventario{
     }
     _codigoEnExistencia(codigo){
         return this.buscar(codigo) == null ? false : true;
+    }
+// Por revisar
+    _agregate(producto, actual) {
+        if(actual.next == null) {
+            actual.next = producto;
+            producto.previus = actual;
+        } else if(actual.codigo <= producto.codigo && actual.next.codigo > producto.codigo) {
+            producto.previus = actual;
+            producto.next = actual.next;
+            actual.next = producto;
+            producto.next.previus = producto;
+        }
+        else {
+            this._agregate(producto, actual.next);
+        }
+        return true;
     }
 }
