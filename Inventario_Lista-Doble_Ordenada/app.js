@@ -33,7 +33,7 @@ const btnSearch = document.getElementById("btnSearch");
 btnSearch.addEventListener("click", () => {
     let codigo = document.getElementById("txtCode").value;
     msg.innerHTML = '';
-    msg.innerHTML = "<p>" + (miInventario.buscar(codigo) == null ? 'No se encontró' : "<h5>Se encontró</h5> " + miInventario.buscar(codigo).info()) + "</p>";
+    msg.innerHTML = "<p>" + (miInventario.buscar(codigo, miInventario.primero) == null ? 'No se encontró' : "<h5>Se encontró</h5> " + miInventario.buscar(codigo,miInventario.primero).info()) + "</p>";
 });
 
 
