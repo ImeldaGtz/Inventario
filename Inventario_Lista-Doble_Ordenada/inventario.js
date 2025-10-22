@@ -68,18 +68,9 @@ export class Inventario{
         this.primero = this.primero.next;
         return resultado;
     }
-
-    _buscarIndice(codigo) {
-        let resultado;
-        for(let i = 0; i< this.productos.length; i++) {
-            if(this.productos[i].codigo == codigo) {
-                resultado = i;
-            }
-        }
-        return resultado != undefined ? resultado : null;
-    }
+// Por revisar
     _codigoEnExistencia(codigo){
-        return this.buscar(codigo) == undefined ? false : true;
+        return this.buscar(codigo, this.primero) == undefined ? false : true;
     }
 // Por revisar
     _agregate(producto, actual) {
