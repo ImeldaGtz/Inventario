@@ -31,7 +31,7 @@ export class Inventario{
         }
         return info;
     }
-
+// Por revisar
     buscar(codigo, actual){
 
         if(actual.codigo == codigo) {
@@ -40,16 +40,23 @@ export class Inventario{
             this.buscar(codigo, actual.next);
         }
     }
-
-    eliminar(codigo) {
-        if (this._codigoEnExistencia(codigo)){
-            for(let i = this._buscarIndice(codigo); i<this.productos.length; i++) {
-                this.productos[i] = this.productos[i+1];
-            }
-            this.productos.pop();
+// Por revisar
+    eliminar(codigo, actual) {
+        if (this.primero.codigo == codigo) {
+            this.primero.next.previus = null;
+            this.primero = this.primero.next;
+            return true; //'Producto eliminado'; // Se elimino el primero
+        }
+        else if (actual.codigo == codigo){
+            actual.previus.next = actual.next;
+            actual.next.previus = actual.previus;
             return true; //'Producto eliminado'; // Se pudo
-        } else {
+        } 
+        else if (actual.next == null){
             return false; //'Codigo inexistente'; // No se pudo
+        } 
+        else {
+            this.eliminar(codigo, actual.next);
         }
     }
     extraerPrimero(){
