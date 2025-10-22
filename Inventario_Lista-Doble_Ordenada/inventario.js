@@ -31,15 +31,16 @@ export class Inventario{
         }
         return info;
     }
-    buscar(codigo){
-        let resultado;
-        for(let i = 0; i< this.productos.length; i++) {
-            if(this.productos[i].codigo == codigo) {
-                resultado = this.productos[i];
-            }
+
+    buscar(codigo, actual){
+
+        if(actual.codigo == codigo) {
+            return codigo;
+        } else {
+            this.buscar(codigo, actual.next);
         }
-        return resultado == undefined ? null : resultado;
     }
+
     eliminar(codigo) {
         if (this._codigoEnExistencia(codigo)){
             for(let i = this._buscarIndice(codigo); i<this.productos.length; i++) {
@@ -74,7 +75,7 @@ export class Inventario{
         return resultado != undefined ? resultado : null;
     }
     _codigoEnExistencia(codigo){
-        return this.buscar(codigo) == null ? false : true;
+        return this.buscar(codigo) == undefined ? false : true;
     }
 // Por revisar
     _agregate(producto, actual) {
