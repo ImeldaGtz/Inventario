@@ -24,10 +24,13 @@ export class Inventario{
             return true; // 'Producto agregado'; // Se pudo
         }
     }
+// Por revisar
     listar(){
         let info = ``;
-        for(let i = 0; i < this.productos.length; i++) {
-            info+= `\n${this.productos[i].info()}`;
+        let actual = this.primero;
+        while(actual != null) {
+            info+= `\n${this.actual.info()}`;
+            actual = actual.next;
         }
         return info;
     }
