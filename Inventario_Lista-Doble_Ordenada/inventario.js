@@ -62,18 +62,12 @@ export class Inventario{
             this.eliminar(codigo, actual.next);
         }
     }
+// Por revisar
     extraerPrimero(){
-        if(this.productos.length == 0) {
-            return false;
-        }
-        let resultado = this.productos[0];
-        for(let i = 0; i<this.productos.length-1; i++) {
-            this.productos[i] = this.productos[i+1];
-        }
-        this.productos.pop();
+        let resultado = this.primero;
+        this.primero = this.primero.next;
         return resultado;
     }
-
 
     _buscarIndice(codigo) {
         let resultado;
