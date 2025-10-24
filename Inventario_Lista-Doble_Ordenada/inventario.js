@@ -34,11 +34,11 @@ export class Inventario{
     }
 // Por revisar
     buscar(codigo, actual){
-        if(actual.codigo == codigo) {
-            return actual;
+        if(actual == null){
+            return null;
         } 
-        else if(actual.next == null){
-            return undefined;
+        else if(actual.codigo == codigo) {
+            return actual;
         } 
         else{
             this.buscar(codigo, actual.next);
@@ -63,7 +63,7 @@ export class Inventario{
             this.eliminar(codigo, actual.next);
         }
     }
-// Por revisar
+// Funcional
     extraerPrimero(){
         let resultado = this.primero;
         this.primero = this.primero.next;
@@ -71,7 +71,7 @@ export class Inventario{
     }
 // Por revisar
     _codigoEnExistencia(codigo){
-        return this.buscar(codigo, this.primero) == undefined ? false : true;
+        return this.buscar(codigo, this.primero) == null ? false : true;
     }
 // Por revisar
     _agregate(producto, actual) {
