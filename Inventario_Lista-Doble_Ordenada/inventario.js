@@ -27,7 +27,7 @@ export class Inventario{
         let info = ``;
         let actual = this.primero;
         while(actual != null) {
-            info+= `\n${this.actual.info()}`;
+            info+= `\n${actual.info()}`;
             actual = actual.next;
         }
         return info;
