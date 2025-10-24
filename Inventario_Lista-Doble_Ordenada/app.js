@@ -57,7 +57,7 @@ function _listarHTML() {
         let info = ``;
         let actual = miInventario.primero;
         while(actual != null) {
-            info+= `\n${actual.info()}`;
+            info+= `<li>${actual.info()}</li>`;
             actual = actual.next;
         }
         return info;
@@ -70,7 +70,7 @@ function _newProduct(){
     let precio = document.getElementById("txtPrice").value;
 
     if (codigo != '' && nombre != '' && cantidad != '' && precio != '') {
-        let producto = new Producto(codigo, nombre, cantidad, precio);
+        let producto = new Producto(parseInt(codigo), nombre, cantidad, precio);
         return producto;
     }
     else {
