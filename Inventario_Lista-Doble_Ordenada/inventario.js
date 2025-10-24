@@ -2,7 +2,7 @@ export class Inventario{
     constructor(){
         this.primero = null;
     }
-// Corregido v1
+// Corregido v2
     agregar(producto){
         if(this.primero == null) {
                 this.primero = producto;
@@ -16,7 +16,7 @@ export class Inventario{
                 producto.next = this.primero;
                 this.primero = producto;
             } else {
-                _agregate(producto, this.primero);
+                this._agregate(producto, this.primero);
             }
 
             return true; // 'Producto agregado'; // Se pudo
@@ -34,9 +34,8 @@ export class Inventario{
     }
 // Por revisar
     buscar(codigo, actual){
-
         if(actual.codigo == codigo) {
-            return codigo;
+            return actual;
         } 
         else if(actual.next == null){
             return undefined;
