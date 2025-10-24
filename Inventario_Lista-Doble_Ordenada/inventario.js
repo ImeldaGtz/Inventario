@@ -73,7 +73,7 @@ export class Inventario{
     _codigoEnExistencia(codigo){
         return this.buscar(codigo, this.primero) == null ? false : true;
     }
-// Por revisar
+// Funcional
     _agregate(producto, actual) {
         if(actual.next == null) {
             actual.next = producto;
