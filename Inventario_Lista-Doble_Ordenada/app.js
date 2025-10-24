@@ -33,7 +33,7 @@ btnList.addEventListener("click", () => {
 
 const btnSearch = document.getElementById("btnSearch");
 btnSearch.addEventListener("click", () => {
-    let codigo = document.getElementById("txtCode").value;
+    let codigo = parseInt(document.getElementById("txtCode").value);
     msg.innerHTML = '';
     msg.innerHTML = "<p>" + (miInventario.buscar(codigo, miInventario.primero) == null ? 'No se encontró' : "<h5>Se encontró</h5> " + miInventario.buscar(codigo,miInventario.primero).info()) + "</p>";
 });
@@ -41,7 +41,7 @@ btnSearch.addEventListener("click", () => {
 
 const btnDelete = document.getElementById("btnDelete");
 btnDelete.addEventListener("click", () => {
-    let codigo = document.getElementById("txtCode").value;
+    let codigo = parseInt(document.getElementById("txtCode").value);
     msg.innerHTML = '';
     msg.innerHTML = "<p>" + (miInventario.eliminar(codigo) ? 'Producto eliminado' : 'Código inexistente') + "</p>";
 });
