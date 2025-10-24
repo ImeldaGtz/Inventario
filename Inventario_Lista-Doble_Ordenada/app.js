@@ -52,11 +52,13 @@ btnExtractFirst.addEventListener("click", () =>{
 });
 
 function _listarHTML() {
-    let info = ``;
-    for(let i = 0; i < miInventario.productos.length; i++) {
-        info+= `<li>${miInventario.productos[i].info()}</li>`;  
-    }
-    return info;
+        let info = ``;
+        let actual = this.primero;
+        while(actual != null) {
+            info+= `\n${actual.info()}`;
+            actual = actual.next;
+        }
+        return info;
 }
 
 function _newProduct(){
