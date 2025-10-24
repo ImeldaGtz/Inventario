@@ -2,23 +2,23 @@ export class Inventario{
     constructor(){
         this.primero = null;
     }
-// Por revisar
+// Corregido v1
     agregar(producto){
-        if (this._codigoEnExistencia(producto.codigo)) {
+        if(this.primero == null) {
+                this.primero = producto;
+                return true;
+            } 
+        else if (this._codigoEnExistencia(producto.codigo)) {
             return false; // 'Codigo ya existente'; // No se pudo
         } else {
-            if(this.primero == null) {
+            if(producto.codigo < this.primero.codigo) {
+                this.primero.previous = producto;
+                producto.next = this.primero;
                 this.primero = producto;
             } else {
-
-                if(producto.codigo < this.primero.codigo) {
-                    this.primero.previous = producto;
-                    producto.next = this.primero;
-                    this.primero = producto;
-                } else {
-                    _agregate(producto, this.primero);
-                }
+                _agregate(producto, this.primero);
             }
+
             return true; // 'Producto agregado'; // Se pudo
         }
     }
@@ -37,7 +37,11 @@ export class Inventario{
 
         if(actual.codigo == codigo) {
             return codigo;
-        } else {
+        } 
+        else if(actual.next == null){
+            return undefined;
+        } 
+        else{
             this.buscar(codigo, actual.next);
         }
     }
