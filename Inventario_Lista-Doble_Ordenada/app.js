@@ -4,8 +4,10 @@ import { Producto } from "./producto.js";
 const miInventario = new Inventario();
 let msg = document.getElementById("detalles");
 
+        console.log('Entro a app.js');
 const btnAdd = document.getElementById("btnAdd");
 btnAdd.addEventListener("click", () => {
+        console.log('Entro a Agregar');
     let producto = _newProduct();
     if (!producto) {
         msg.innerHTML = '';
@@ -20,7 +22,7 @@ btnAdd.addEventListener("click", () => {
 
 const btnList = document.getElementById("btnList");
 btnList.addEventListener("click", () => {
-    if (miInventario.productos.length == 0) {
+    if (miInventario.primero == null) {
         msg.innerHTML = '';
         msg.innerHTML += "<p>Nada que listar</p>";
     } else{
