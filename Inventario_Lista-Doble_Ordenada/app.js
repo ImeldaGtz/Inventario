@@ -55,7 +55,7 @@ btnExtractFirst.addEventListener("click", () =>{
 
 function _listarHTML() {
         let info = ``;
-        let actual = this.primero;
+        let actual = miInventario.primero;
         while(actual != null) {
             info+= `\n${actual.info()}`;
             actual = actual.next;
