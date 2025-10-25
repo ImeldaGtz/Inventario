@@ -22,7 +22,7 @@ export class Inventario{
             return true; // 'Producto agregado'; // Se pudo
         }
     }
-// Por revisar
+// Funcional
     listar(){
         let info = ``;
         let actual = this.primero;
