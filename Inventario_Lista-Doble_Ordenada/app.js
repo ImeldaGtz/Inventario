@@ -31,6 +31,18 @@ btnList.addEventListener("click", () => {
     }
 });
 
+
+const btnListReverse = document.getElementById("btnListReverse");
+btnListReverse.addEventListener("click", () => {
+    if (miInventario.primero == null) {
+        msg.innerHTML = '';
+        msg.innerHTML += "<p>Nada que listar</p>";
+    } else{
+        msg.innerHTML = ''
+        msg.innerHTML = "<ul>" + _listarInversoHTML() + "</ul>";
+    }
+});
+
 const btnSearch = document.getElementById("btnSearch");
 btnSearch.addEventListener("click", () => {
     let codigo = parseInt(document.getElementById("txtCode").value);
@@ -53,6 +65,12 @@ btnExtractFirst.addEventListener("click", () =>{
     msg.innerHTML += (pro != false) ? "<h5>Se extrajo</h5> <p>" + pro.info() + "</p>" : '<p>No hay qué extraer</p>';
 });
 
+const btnExtractLast = document.getElementById("btnExtractLast");
+btnExtractLast.addEventListener("click", () =>{
+    let pro = miInventario.extraerUltimo();
+    msg.innerHTML = '';
+    msg.innerHTML += (pro != false) ? "<h5>Se extrajo</h5> <p>" + pro.info() + "</p>" : '<p>No hay qué extraer</p>';
+});
 function _listarHTML() {
         let info = ``;
         let actual = miInventario.primero;
@@ -61,6 +79,20 @@ function _listarHTML() {
             actual = actual.next;
         }
         return info;
+}
+
+
+function _listarInversoHTML() {
+        let info = _enlistate(miInventario.primero);
+        return info;
+}
+
+function _enlistate(actual) {
+    if(actual.next == null) {
+        return `<li> ${actual.info()}</li>`;
+    } else{
+        _enlistate(actual.next);
+    }
 }
 
 function _newProduct(){
