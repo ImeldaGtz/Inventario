@@ -46,28 +46,50 @@ export class Inventario{
     }
 // Por revisar
     eliminar(codigo, actual) {
-        if (this.primero.codigo == codigo) {
-            this.primero.next.previous = null;
-            this.primero = this.primero.next;
-            return true; //'Producto eliminado'; // Se elimino el primero
+        if(actual == null) {
+            return false; //'Codigo inexistente'; // No se pudo
+        }
+        else if (this.primero.codigo == codigo) {
+
+            if(this.primero.next == null) {
+                this.primero = null;
+            } else {
+                this.primero.next.previous = null;
+                this.primero = this.primero.next;
+                return true; //'Producto eliminado'; // Se elimino el primero
+            }
         }
         else if (actual.codigo == codigo){
             actual.previous.next = actual.next;
             actual.next.previous = actual.previous;
             return true; //'Producto eliminado'; // Se pudo
-        } 
-        else if (actual.next == null){
-            return false; //'Codigo inexistente'; // No se pudo
-        } 
+        }
         else {
             this.eliminar(codigo, actual.next);
         }
     }
 // Funcional
     extraerPrimero(){
-        let resultado = this.primero;
-        this.primero = this.primero.next;
-        return resultado;
+        if(this.primero == null) {
+            return false;
+        } else if(this.primero.next == null){
+            let resultado = this.primero;
+            this.primero = null;
+            return resultado;
+        } else{
+            let resultado = this.primero;
+            this.primero = this.primero.next;
+            this.primero.previous = null;
+            return resultado;
+        }
+    }
+// Por revisar
+    extraerUltimo(actual) {
+        if(actual.next == null || actual.next == undefined) {
+            return actual;
+        } else {
+            this.extraerUltimo(actual.next);
+        }
     }
 // Por revisar
     _codigoEnExistencia(codigo){
