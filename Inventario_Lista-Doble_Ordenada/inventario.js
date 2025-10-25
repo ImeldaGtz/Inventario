@@ -86,7 +86,14 @@ export class Inventario{
 // Por revisar
     extraerUltimo(actual) {
         if(actual.next == null || actual.next == undefined) {
-            return actual;
+            if(this.primero == actual) {
+                this.primero = null;
+                return actual;
+            } else {
+                let resultado = actual;
+                actual.previous.next = null;
+                return resultado;
+            }
         } else {
             this.extraerUltimo(actual.next);
         }
