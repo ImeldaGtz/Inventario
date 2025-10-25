@@ -67,7 +67,7 @@ btnExtractFirst.addEventListener("click", () =>{
 
 const btnExtractLast = document.getElementById("btnExtractLast");
 btnExtractLast.addEventListener("click", () =>{
-    let pro = miInventario.extraerUltimo();
+    let pro = miInventario.extraerUltimo(miInventario.primero);
     msg.innerHTML = '';
     msg.innerHTML += (pro != false) ? "<h5>Se extrajo</h5> <p>" + pro.info() + "</p>" : '<p>No hay qué extraer</p>';
 });
