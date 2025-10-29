@@ -92,6 +92,7 @@ export class Inventario{
             } else {
                 let resultado = actual;
                 actual.previous.next = null;
+                console.log(resultado);
                 return resultado;
             }
         } else {
